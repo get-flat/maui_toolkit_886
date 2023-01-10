@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:syscollections="clr-namespace:System.Collections;assembly=mscorlib"
+             x:Class="MauiApp5.MainPage">
+
+    <Grid RowDefinitions="Auto, *">
+        <Image Source="dotnet_bot.png" WidthRequest="50" HeightRequest="50">
+            <Image.Behaviors>
+                <!--WORKS-->
+                <toolkit:IconTintColorBehavior TintColor="Red" />
+            </Image.Behaviors>
+        </Image>
+
+        <CollectionView Grid.Row="1" VerticalScrollBarVisibility="Never">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <SwipeView>
+                        <SwipeView.RightItems>
+                            <SwipeItems>
+                                <SwipeItemView>
+                                    <Image Source="dotnet_bot.png" WidthRequest="50" HeightRequest="50">
+                                        <Image.Behaviors>
+                                            <!--DOES NOT WORK-->
+                                            <toolkit:IconTintColorBehavior TintColor="Yellow" />
+                                        </Image.Behaviors>
+                                    </Image>
+                                </SwipeItemView>
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+
+                        <!-- Content -->
+                        <HorizontalStackLayout>
+                            <Label BackgroundColor="Green" Margin="0,0,0,15" Padding="10" FontSize="Large" Text="{Binding .}" />
+                            <Image Source="dotnet_bot.png" WidthRequest="50" HeightRequest="50">
+                                <Image.Behaviors>
+                                    <!--WORKS-->
+                                    <toolkit:IconTintColorBehavior TintColor="Blue" />
+                                </Image.Behaviors>
+                            </Image>
+                        </HorizontalStackLayout>
+                </SwipeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+            <CollectionView.ItemsSource>
+                <syscollections:ArrayList>
+                    <x:String>Item 1</x:String>
+                    <x:String>Item 2</x:String>
+                </syscollections:ArrayList>
+            </CollectionView.ItemsSource>
+        </CollectionView>
+    </Grid>
+</ContentPage>
